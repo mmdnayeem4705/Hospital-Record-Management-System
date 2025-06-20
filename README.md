@@ -215,6 +215,68 @@ MIT License © 2025 Your Name
 ---
 
 ```
+Certainly! Here's the **detailed section for fake ETH (token) generation using Hardhat Console** that you can include in your README or use for your own understanding:
+
+---
+
+## 💸 Fake ETH Generation with Hardhat (for Testing)
+
+### ✅ Prerequisites
+
+* Hardhat local node must be running:
+
+```bash
+npx hardhat node
+```
+
+* MetaMask should be connected to `http://localhost:8545` (i.e., the Hardhat network).
+* Use any one of the 20 default Hardhat accounts (they each have 10,000 ETH by default).
+
+---
+
+### 🚀 Steps to Send Fake ETH to MetaMask Wallet
+
+1. Open the Hardhat console in another terminal window:
+
+```bash
+npx hardhat console --network localhost
+```
+
+2. Paste the following code **line-by-line** (replace the recipient address with your MetaMask account):
+
+```js
+// 👛 Your MetaMask wallet address (copy from MetaMask)
+const recipient = "0xYourMetaMaskAddressHere";
+
+// 🔑 Use the first signer provided by Hardhat
+const [sender] = await ethers.getSigners();
+
+// 💸 Send 5000 ETH to your MetaMask wallet
+await sender.sendTransaction({
+  to: recipient,
+  value: ethers.utils.parseEther("5000")
+});
+```
+
+3. If successful, you’ll get a transaction hash like this:
+
+```
+{
+  hash: '0x...',
+  from: '0x...',
+  to: '0xYourMetaMaskAddressHere',
+  value: BigNumber { value: "5000000000000000000000" },
+  ...
+}
+```
+
+4. You should now see 5000 ETH in your MetaMask wallet under the `localhost 8545` network.
+
+---
+
+🔒 **Note**: This ETH is only usable in your local Hardhat development environment. It has no real-world value and is purely for testing smart contracts and transactions.
+
+Let me know if you'd like to include ERC20 fake token generation too.
 
 ---
 
@@ -226,3 +288,4 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.js
 ```
+
