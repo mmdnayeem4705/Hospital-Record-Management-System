@@ -1,10 +1,11 @@
-//SPDX-License-Identifier:MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 contract MedicalRecord {
     uint public recordId;
-    mapping(uint => Record) records;
+    mapping(uint => Record) private records;
     mapping(uint => bool) public isDeleted;
+
     struct Record {
         uint recordId;
         uint timestamp;
@@ -17,7 +18,7 @@ contract MedicalRecord {
         string treatment;
     }
 
-    event MedicalRecords__AddRecord(
+    event MedicalRecordAdded(
         uint recordId,
         uint timestamp,
         string name,
@@ -28,7 +29,8 @@ contract MedicalRecord {
         string diagnosis,
         string treatment
     );
-    event MedicalRecords__DeleteRecord(
+
+    event MedicalRecordDeleted(
         uint recordId,
         uint timestamp,
         string name,
@@ -61,7 +63,8 @@ contract MedicalRecord {
             _diagnosis,
             _treatment
         );
-        emit MedicalRecords__AddRecord(
+
+        emit MedicalRecordAdded(
             recordId,
             block.timestamp,
             _name,
@@ -75,9 +78,11 @@ contract MedicalRecord {
     }
 
     function deleteRecord(uint _recordId) public {
-        require(!isDeleted[_recordId], "The record is already deleted");
+        require(!isDeleted[_recordId], "Record already deleted");
         Record storage record = records[_recordId];
-        emit MedicalRecords__DeleteRecord(
+        isDeleted[_recordId] = true;
+
+        emit MedicalRecordDeleted(
             record.recordId,
             block.timestamp,
             record.name,
@@ -88,25 +93,23 @@ contract MedicalRecord {
             record.diagnosis,
             record.treatment
         );
-        isDeleted[_recordId] = true;
     }
 
-    function getRecord(
-        uint _recordId
-    )
+    function getRecord(uint _recordId)
         public
         view
         returns (
-            uint,
-            string memory,
-            uint,
-            string memory,
-            string memory,
-            string memory,
-            string memory,
-            string memory
+            uint timestamp,
+            string memory name,
+            uint age,
+            string memory gender,
+            string memory bloodType,
+            string memory allergies,
+            string memory diagnosis,
+            string memory treatment
         )
     {
+        require(!isDeleted[_recordId], "Record is deleted");
         Record storage record = records[_recordId];
         return (
             record.timestamp,
@@ -156,7 +159,7 @@ contract MedicalRecord {
         return records[_recordId].treatment;
     }
 
-    function getDeleted(uint256 _recordId) public view returns (bool) {
+    function isRecordDeleted(uint _recordId) public view returns (bool) {
         return isDeleted[_recordId];
     }
 }

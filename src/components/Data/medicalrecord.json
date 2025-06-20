@@ -1,0 +1,37 @@
+
+    [
+        
+    {
+        "recordId": 1,
+        "timestamp": 1710000000,
+        "name": "Aman Gupta",
+        "age": 44,
+        "gender": "Male",
+        "bloodType": "B positive",
+        "allergies": "Allergic rhinitis",
+        "diagnosis": "Hypertension",
+        "treatment": "Medications"
+    },
+    {
+        "recordId": 2,
+        "timestamp": 1710000300,
+        "name": "Olivia Robinson",
+        "age": 77,
+        "gender": "Female",
+        "bloodType": "A negative",
+        "allergies": "Animal dander allergy",
+        "diagnosis": "Acute appendicitis",
+        "treatment": "Occupational therapy"
+    },
+    {
+        "recordId": 3,
+        "timestamp": 1710000600,
+        "name": "Ethan Clark",
+        "age": 23,
+        "gender": "Male",
+        "bloodType": "O negative",
+        "allergies": "Drug allergy",
+        "diagnosis": "Bronchitis",
+        "treatment": "Radiation therapy"
+    }
+    ]

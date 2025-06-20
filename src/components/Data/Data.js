@@ -10,6 +10,8 @@ const Data = () => {
   const provider = useSelector((state) => state.provider.connection);
   const medical = useSelector((state) => state.medical.contract);
   const dispatch = useDispatch();
+  const records = useSelector((state) => state.records); // ✅ this must match your reducer
+
   const deleteHandler = (e, data) => {
     if (window.confirm("Do you want to delete the record?")) {
       deleteData(medical, data.recordId, dispatch, provider);
