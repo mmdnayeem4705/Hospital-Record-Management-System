@@ -218,15 +218,7 @@ MIT License © 2025 Your Name
 
 ---
 
-### ✅ Let Me Know If You Need:
-- A hosted GitHub version
-- Deployment to Goerli or Mumbai
-- Tailwind CSS styling for form & data UI
-- PDF version of README
-
-Just say the word — I’ll generate it!
-```
-
+SHELL
 ```shell
 npx hardhat help
 npx hardhat test
